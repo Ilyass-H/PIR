@@ -12,7 +12,7 @@ file2 = open("bestHyperParam.json","w")
 param = json.load(file)
 
 if not os.path.isfile('scaledTrainData.csv'):
-	print("here")
+	print("Scaling DATA ....")
 	os.system('python scale.py')
 
 X,Y = load.load_data(5000,'scaledTrainData.csv')
