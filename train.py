@@ -10,7 +10,7 @@ IN_SIZE = 8
 device = torch.device('cuda:0')
 #print(torch.cuda.get_device_name(device))
 
-def train(X,Y,HyperParam,X_cv,Y_cv,N):
+def train(X,Y,HyperParam,X_cv,Y_cv):
 
 
 	if HyperParam == None :
@@ -31,9 +31,9 @@ def train(X,Y,HyperParam,X_cv,Y_cv,N):
 
 			self.linear = nn.Linear(HyperParam["H_SIZE"], 1)
 
-		def init_hidden(self):
-			return (torch.zeros(HyperParam["LAYERS"], N, HyperParam["H_SIZE"]),
-	        		torch.zeros(HyperParam["LAYERS"], N, HyperParam["H_SIZE"]))
+		def init_hidden(self,n):
+			return (torch.zeros(HyperParam["LAYERS"], n, HyperParam["H_SIZE"]),
+	        		torch.zeros(HyperParam["LAYERS"], n, HyperParam["H_SIZE"]))
 
 		def forward(self,x):
 	   		out,self.h = self.lstm(x)
@@ -51,12 +51,12 @@ def train(X,Y,HyperParam,X_cv,Y_cv,N):
 	# Fitting du modele
 	for step in range(HyperParam["EPOCHS"]):
 
-		myLSTM.h = myLSTM.init_hidden()
+		myLSTM.h = myLSTM.init_hidden(len(X))
 		prediction = myLSTM(X)
 		loss = loss_func(prediction, Y)
 		
-		#if step % 500 == 0:
-		#    print("step: ", step, "MSE: ", loss.item())
+		if step % 100 == 0:
+		    print("step: ", step, "MSE: ", loss.item())
 
 		optimizer.zero_grad()                   
 		loss.backward()
@@ -65,6 +65,6 @@ def train(X,Y,HyperParam,X_cv,Y_cv,N):
 	
 
 	# Testing on Cross-Validation Data Set
-	myLSTM.h = myLSTM.init_hidden()
+	myLSTM.h = myLSTM.init_hidden(len(X_cv))
 	prediction = myLSTM(X_cv)
 	return loss_func(prediction,Y_cv)

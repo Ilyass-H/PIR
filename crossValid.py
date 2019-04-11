@@ -13,8 +13,8 @@ param = json.load(file)
 if not os.path.isfile('scaledTrainData.csv'):
 	os.system('python scale.py')
 
-X,Y = load.load_data(500,'scaledTrainData.csv')
-X_cv,Y_cv = load.load_data(500,'scaledCVData.csv')
+X,Y = load.load_data(50,'scaledTrainData.csv')
+X_cv,Y_cv = load.load_data(10,'scaledCVData.csv')
 
 best = np.inf
 bestHyperParam = ""
@@ -22,7 +22,7 @@ bestHyperParam = ""
 for LR,H_SIZE,EPOCHS,LAYERS in product(param["LR"],param["H_SIZE"],param["EPOCHS"],param["LAYERS"]):
 	
 	hyperParam = json.dumps({"LR":LR,"H_SIZE":H_SIZE,"EPOCHS":EPOCHS,"LAYERS":LAYERS})
-	loss = train.train(X,Y,hyperParam,X_cv,Y_cv,500)
+	loss = train.train(X,Y,hyperParam,X_cv,Y_cv)
 	print(hyperParam)
 	print(loss)
 	if best < loss:
