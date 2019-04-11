@@ -16,7 +16,7 @@ if not os.path.isfile('scaledTrainData.csv'):
 X,Y = load.load_data(50,'scaledTrainData.csv')
 X_cv,Y_cv = load.load_data(10,'scaledCVData.csv')
 
-best = np.inf
+best = -np.inf
 bestHyperParam = ""
 
 for LR,H_SIZE,EPOCHS,LAYERS in product(param["LR"],param["H_SIZE"],param["EPOCHS"],param["LAYERS"]):
