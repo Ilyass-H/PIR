@@ -1,1 +1,5 @@
+/__pycache__
 /DH8D_train.csv.xz
+/DH8D_valid.csv.xz
+/scaledCVData.csv
+/scaledTrainData.csv
