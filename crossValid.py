@@ -8,13 +8,15 @@ import load
 
 
 file = open("myJson.json","r")
+file2 = open("bestHyperParam.json","w")
 param = json.load(file)
 
 if not os.path.isfile('scaledTrainData.csv'):
+	print("here")
 	os.system('python scale.py')
 
-X,Y = load.load_data(50,'scaledTrainData.csv')
-X_cv,Y_cv = load.load_data(10,'scaledCVData.csv')
+X,Y = load.load_data(5000,'scaledTrainData.csv')
+X_cv,Y_cv = load.load_data(100,'scaledCVData.csv')
 
 best = -np.inf
 bestHyperParam = ""
@@ -29,5 +31,9 @@ for LR,H_SIZE,EPOCHS,LAYERS in product(param["LR"],param["H_SIZE"],param["EPOCHS
 		best = loss
 		bestHyperParam = hyperParam
 
-file.close()
+print("############# Finished ################")
+print(bestHyperParam)
+file2.write(bestHyperParam)
 
+file.close()
+file2.close()

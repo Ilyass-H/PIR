@@ -55,7 +55,7 @@ def train(X,Y,HyperParam,X_cv,Y_cv):
 		prediction = myLSTM(X)
 		loss = loss_func(prediction, Y)
 		
-		if step % 100 == 0:
+		if step % 500 == 0:
 		    print("step: ", step, "MSE: ", loss.item())
 
 		optimizer.zero_grad()                   
