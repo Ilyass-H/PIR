@@ -1,1 +1,1 @@
-{"LR": 0.01, "H_SIZE": 30, "EPOCHS": 500, "LAYERS": 2}
+{"LR": 0.001, "H_SIZE": 10, "EPOCHS": 50, "LAYERS": 1}
