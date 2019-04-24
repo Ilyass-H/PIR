@@ -7,8 +7,8 @@ import train
 import load
 import sys
 
-N_Train = 11000
-N_valid = 4000
+N_Train = 11#000
+N_valid = 4#000
 
 file = open("hyperParameters.json","r")
 file2 = open("bestHyperParam.json","w")
@@ -38,7 +38,7 @@ log.write("############## Start Validation ################### \n\n")
 for LR,H_SIZE,EPOCHS,LAYERS in product(param["LR"],param["H_SIZE"],param["EPOCHS"],param["LAYERS"]):
 	
 	hyperParam = json.dumps({"LR":LR,"H_SIZE":H_SIZE,"EPOCHS":EPOCHS,"LAYERS":LAYERS})
-	loss = train.train(X,Y,hyperParam,X_v,Y_v)
+	loss = train.train(X,Y,hyperParam,X_v,Y_v,"valid")
 	print("hyper paramerters : " + hyperParam)
 	log.write("hyper paramerters : " + hyperParam)
 	print("Loss : ",loss.item())
