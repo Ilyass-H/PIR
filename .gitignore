@@ -7,4 +7,5 @@
 /scaledValidData.csv
 /scaledTrainTestData.csv
 /log
+/bestHyperParam.json
 
