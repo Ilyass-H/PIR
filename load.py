@@ -7,7 +7,8 @@ from torch import nn
 
 IN_SIZE = 8							# number of features
 
-device = torch.device('cuda:0')
+torch.cuda.init()
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 def load_data(N,file):
 

@@ -7,10 +7,11 @@ from torch import nn
 
 IN_SIZE = 8
 
-device = torch.device('cuda:0')
+
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 #print(torch.cuda.get_device_name(device))
 
-def train(X,Y,HyperParam,X_cv,Y_cv):
+def train(X,Y,HyperParam,X_v,Y_v):
 
 
 	if HyperParam == None :
@@ -55,8 +56,8 @@ def train(X,Y,HyperParam,X_cv,Y_cv):
 		prediction = myLSTM(X)
 		loss = loss_func(prediction, Y)
 		
-		if step % 500 == 0:
-		    print("step: ", step, "MSE: ", loss.item())
+		#if step % 500 == 0:
+		#    print("step: ", step, "MSE: ", loss.item())
 
 		optimizer.zero_grad()                   
 		loss.backward()
@@ -65,6 +66,6 @@ def train(X,Y,HyperParam,X_cv,Y_cv):
 	
 
 	# Testing on Cross-Validation Data Set
-	myLSTM.h = myLSTM.init_hidden(len(X_cv))
-	prediction = myLSTM(X_cv)
-	return loss_func(prediction,Y_cv)
+	myLSTM.h = myLSTM.init_hidden(len(X_v))
+	prediction = myLSTM(X_v)
+	return loss_func(prediction,Y_v)

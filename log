@@ -1,0 +1,7 @@
+Loading Data for Validation ... Data Loaded 
+
+############## Start Validation ################### 
+
+hyper paramerters : {"LR": 0.0001, "H_SIZE": 40, "EPOCHS": 50, "LAYERS": 1}Loss : 0.9839463829994202hyper paramerters : {"LR": 0.0001, "H_SIZE": 40, "EPOCHS": 50, "LAYERS": 2}Loss : 0.8868699669837952
+############# Finished Validation ################
+best Hyper Parameters : {"LR": 0.0001, "H_SIZE": 40, "EPOCHS": 50, "LAYERS": 2}

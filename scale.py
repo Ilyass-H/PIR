@@ -29,7 +29,7 @@ d_train = pd.concat([segmentCol_train,d_train],axis=1)
 d_valid = pd.concat([segmentCol_valid,d_valid],axis=1)
 
 f_train = open("scaledTrainData.csv","w")
-f_valid = open("scaledCVData.csv","w")
+f_valid = open("scaledValidData.csv","w")
 f_train.write(d_train.to_csv(index=False))
 f_valid.write(d_valid.to_csv(index=False))
 f_train.close()
