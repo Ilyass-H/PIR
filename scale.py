@@ -13,9 +13,9 @@ d_train = pd.read_csv("DH8D_train.csv.xz")
 d_valid = pd.read_csv("DH8D_valid.csv.xz")
 d_test = pd.read_csv("DH8D_test.csv.xz")
 
-d_train = d_train[['segment','taskalman','baroaltitudekalman','ukalman','vkalman','heading','lat','lon','tempkalman','massFutur']]
-d_valid = d_valid[['segment','taskalman','baroaltitudekalman','ukalman','vkalman','heading','lat','lon','tempkalman','massFutur']]
-d_test = d_test[['segment','taskalman','baroaltitudekalman','ukalman','vkalman','heading','lat','lon','tempkalman','massFutur']]
+d_train = d_train[['segment','taskalman','baroaltitudekalman','ukalman','vkalman','heading','lat','lon','tempkalman','massFutur','distance_from_dep','trip_distance']]
+d_valid = d_valid[['segment','taskalman','baroaltitudekalman','ukalman','vkalman','heading','lat','lon','tempkalman','massFutur','distance_from_dep','trip_distance']]
+d_test = d_test[['segment','taskalman','baroaltitudekalman','ukalman','vkalman','heading','lat','lon','tempkalman','massFutur','distance_from_dep','trip_distance']]
 
 d_train = d_train.dropna()
 d_valid = d_valid.dropna()

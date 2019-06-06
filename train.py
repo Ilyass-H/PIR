@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from torch import nn
 
-IN_SIZE = 8
+IN_SIZE = 10
 
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')

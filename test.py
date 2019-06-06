@@ -8,8 +8,8 @@ import load
 MEAN = 26331.311502
 STD = 1799.268739
 
-N_TEST = 10#10279
-N_Train = 10#21896
+N_TEST = 10279
+N_Train = 21896
 
 log = open("log", "a")
 
@@ -37,6 +37,7 @@ pred_loss = 0
 bada_loss = 0
 
 cnt = 4
+n = 0
 
 print("\n\n")
 log.write("\n\n\n")
@@ -49,7 +50,7 @@ for j in range(len(pred)):
 				p = int((pred[j][i].item() * STD)+MEAN)
 				y = int(((Y_test[j][i].item() * STD)+MEAN))
 				m = int(massPast[j][i][0])
-				print(p,end=' - ')
+				print(p,end=" - ")
 				log.write(str(p))
 				log.write(" - ")
 				print(y,end=",  massPast = ")
@@ -58,7 +59,7 @@ for j in range(len(pred)):
 				print(massPast[j][i][0])
 				log.write(str(m))
 				log.write("\n")
-				
+			n = n + 1	
 			pred_loss += (((pred[j][i].item() * STD)+MEAN) - ((Y_test[j][i][0] * STD)+MEAN))**2
 			bada_loss += (massPast[j][i][0] - ((Y_test[j][i][0] * STD)+MEAN))**2
 	if cnt > 0:
@@ -69,9 +70,9 @@ for j in range(len(pred)):
 
 print("\n########## RMSE LOSS : \n")
 log.write("\n########## RMSE LOSS : \n\n")
-print("\n# pred_loss = ",np.sqrt(pred_loss.cpu()))
+print("\n# pred_loss = ",np.sqrt((1/n)*(pred_loss.cpu())))
 log.write("\n# pred_loss = ")
-log.write(str(np.sqrt(pred_loss.cpu().item())))
-print("# bada_loss = ",np.sqrt(bada_loss.cpu()))
+log.write(str(np.sqrt((1/n)*(pred_loss.cpu().item()))))
+print("# bada_loss = ",np.sqrt((1/n)*(bada_loss.cpu())))
 log.write("\n# bada_loss = ")
-log.write(str(np.sqrt(bada_loss.cpu().item())))
+log.write(str(np.sqrt((1/n)*(bada_loss.cpu().item()))))

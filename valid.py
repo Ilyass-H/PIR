@@ -7,8 +7,8 @@ import train
 import load
 import sys
 
-N_Train = 11#000
-N_valid = 4#000
+N_Train = 16275
+N_valid = 5621
 
 file = open("hyperParameters.json","r")
 file2 = open("bestHyperParam.json","w")
@@ -18,7 +18,7 @@ param = json.load(file)
 if not os.path.isfile('scaledTrainData.csv'):
 	print("Scaling DATA ....")
 	log.write("Scaling DATA ....\n")
-	os.system('python scale.py')
+	os.system('python3 scale.py')
 
 
 print("Loading Data for Validation ... ")
@@ -61,4 +61,4 @@ file2.write(bestHyperParam)
 file.close()
 file2.close()
 
-os.system("python test.py")
+os.system("python3 test.py")
